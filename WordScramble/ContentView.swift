@@ -17,7 +17,9 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
-    @State private var score = 0
+    @State private var roundScore = 0
+    @State private var totalScore = 0
+   
     
     
     
@@ -43,7 +45,11 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    Text("Your score is \(score)")
+                    Text("Your score for the current word is \(roundScore)")
+                }
+                
+                Section {
+                    Text("Your total score is \(totalScore)")
                 }
                 
             }
@@ -99,13 +105,16 @@ struct ContentView: View {
         newWord = ""
         
         wordScore = answer.count - 2
-        score = score + wordScore
+        
+        roundScore = roundScore + wordScore
+        totalScore = totalScore + wordScore
     }
     
     
     func startGame() {
         usedWords = [String]()
         newWord = ""
+        roundScore = 0
         
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL) {
