@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     
     
     var body: some View {
@@ -27,6 +29,7 @@ struct ContentView: View {
                 Section {
                     TextField("Enter your word", text: $newWord)
                         .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }
                 
                 Section {
@@ -39,6 +42,10 @@ struct ContentView: View {
                     }
                 }
                 
+                Section {
+                    Text("Your score is \(score)")
+                }
+                
             }
             .navigationTitle(rootWord)
             .onSubmit(addNewWord)
@@ -48,16 +55,27 @@ struct ContentView: View {
             } message: {
                 Text(errorMessage)
             }
+            .toolbar {
+                Button("New Word", action: startGame)
+            }
         }
         
         
     }
     
     func addNewWord() {
+        let wordScore: Int
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 0 else { return }
         
         // validation
+        
+        guard answer.count > 2 else {
+            wordError(title: "Word is not long enough", message: "Please make sure the word is at least 3 letters long.")
+            return }
+        
+        guard answer != rootWord else {
+            wordError(title: "Word is the prompt", message: "You need to build words from this word; try again.")
+            return }
         
         guard isReal(word: answer) else {
             wordError(title: "Word not recognized", message: "Hmmm, you sure that's a valid English word?")
@@ -79,10 +97,16 @@ struct ContentView: View {
         }
         
         newWord = ""
+        
+        wordScore = answer.count - 2
+        score = score + wordScore
     }
     
     
     func startGame() {
+        usedWords = [String]()
+        newWord = ""
+        
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 let allWords = startWords.components(separatedBy: "\n")
