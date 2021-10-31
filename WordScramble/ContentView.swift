@@ -33,7 +33,6 @@ struct ContentView: View {
                     TextField("Enter your word", text: $newWord)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
-                        .font(.title2)
                 }
                 
                 Section {
