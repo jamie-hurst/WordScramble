@@ -3,11 +3,5 @@
 
 #### Create new words from the title prompt.
 
-3 letter words = 1 point
-
-1 point is awarded for each additional letter.
-
-
-
-https://user-images.githubusercontent.com/28959624/139602940-b0e9cc2f-e019-41c1-afc8-578a39c3e54d.mov
+https://user-images.githubusercontent.com/28959624/139604163-c284a32b-2a1d-45b8-b180-9bd2a2183082.mov
 
