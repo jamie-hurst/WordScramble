@@ -28,10 +28,12 @@ struct ContentView: View {
         NavigationView {
             List {
                 
+                
                 Section {
                     TextField("Enter your word", text: $newWord)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
+                        .font(.title2)
                 }
                 
                 Section {
