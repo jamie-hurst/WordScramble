@@ -38,6 +38,7 @@ struct ContentView: View {
                 Section {
                     ForEach(usedWords, id: \.self) { word in
                         HStack {
+                            // the SF symbol reflects the number of points earned per word.
                             Image(systemName: "\(word.count - 2).circle")
                             Text(word)
                         }
