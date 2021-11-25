@@ -1,7 +1,8 @@
 # WordScramble
-### Project 5 from #100DaysOfSwiftUI @ hackingWithSwift.com
 
-#### Create new words from the title prompt.
+#### Project 5 from #100DaysOfSwiftUI @ hackingWithSwift.com
+
+Create new words from the title prompt.
 
 Extended this app from the tutorial by adding a scoring system and the ability to switch words.
 
