@@ -42,6 +42,9 @@ struct ContentView: View {
                             Image(systemName: "\(word.count - 2).circle")
                             Text(word)
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(word)
+                        .accessibilityHint("Worth \(word.count - 2) points")
                         
                     }
                 }
